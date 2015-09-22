@@ -1,16 +1,12 @@
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: {
-		angular: [
-			path.join(__dirname, 'node_modules', 'angular', 'index.js'),
-			path.join(__dirname, 'node_modules', 'angular-animate', 'index.js'),
-			path.join(__dirname, 'node_modules', 'angular-aria', 'index.js'),
-			path.join(__dirname, 'node_modules', 'angular-material', 'index.js')			
-		],
-		app: path.join(__dirname, 'app', 'app.ts')
+		app: path.join(__dirname, 'app', 'entry.js')
 	},
+	context: __dirname,
 	devtool: 'source-map',
 	output: {
 		filename: 'dist/js/[name].bundle.js',
@@ -20,28 +16,20 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.ts', '.js', '.css']
 	},
-	plugins: [
-		new HtmlWebpackPlugin(),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'app', 'app.html'),
-			inject: 'body',
-			filename: path.join(__dirname, 'dist', 'app.html'),
-			chunks: {
-				head: {
-					css: [
-						path.join(__dirname, 'node_modules', 'angular-material', 'angular-material.css')
-					]
-				}
-			},
-			css: [
-				path.join(__dirname, 'node_modules', 'angular-material', 'angular-material.css')
-			]
-		})	
+	plugins: [	
+		new webpack.HotModuleReplacementPlugin(),
+		new ExtractTextPlugin('dist/css/[name].css')
 	],
 	module: {
 		loaders: [
-			{ test: /\.ts$/, loader: 'typescript-simple' },
-			{ test: /\.css$/, loader: 'style-loader!css-loader'}
+			{ 
+				test: /\.ts$/, 
+				loader: 'typescript-simple' 
+			},
+			{ 
+				test: /\.css$/, 
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+			}
 		]
 	}
 };

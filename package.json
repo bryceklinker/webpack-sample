@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "karma start",
     "start": "webpack-dev-server --hot"
   },
   "author": "",
@@ -16,7 +16,7 @@
     "angular-material": "^0.11.0",
     "angular-mocks": "^1.4.6",
     "css-loader": "^0.18.0",
-    "html-webpack-plugin": "^1.6.1",
+    "extract-text-webpack-plugin": "^0.8.2",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.9",
     "karma-jasmine": "^0.3.6",

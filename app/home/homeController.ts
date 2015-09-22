@@ -1,6 +1,11 @@
+/// <reference path="./../../typings/tsd.d.ts" />
+
 class HomeController {
-	constructor(){
+	static $inject = ['$scope'];
+	
+	constructor($scope: any){
+		$scope.name = 'Bryce';
 	}
 }
 
-export = HomeController;
+export {HomeController};

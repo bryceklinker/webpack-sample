@@ -4,7 +4,6 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-        { pattern: './app', watched: false},
         { pattern: 'spec.bundle.js', watched: false }
     ],
     exclude: [
@@ -13,6 +12,9 @@ module.exports = function(config) {
         'spec.bundle.js': ['webpack', 'sourcemap']
     },
     webpack: webpackConfig,
+    webpackMiddleware: {
+        noInfo: true
+    },
     reporters: ['progress'],
     port: 9876,
     colors: true,

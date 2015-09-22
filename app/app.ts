@@ -1,4 +1,6 @@
-/// <reference path="./../typings/angularjs/angular.d.ts" />
-import Home = require('./home/home');
+/// <reference path="./../typings/tsd.d.ts" />
+import {HomeModule} from "./home/homeModule";
 
-export const App = angular.module('app', [Home.name]);
+const App = angular.module('app', [HomeModule.name]);
+
+export {App};
